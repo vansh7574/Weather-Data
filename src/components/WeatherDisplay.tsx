@@ -1,5 +1,6 @@
 import { Paper, Typography } from "@mui/material";
 import React from "react";
+import "./WD.css";
 //{(weatherData.main.temp - 273.15)*9/5 + 32} °F, {(weatherData.main.temp - 273.15)} °C
 export interface WeatherData {
   coord: {
@@ -61,9 +62,16 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData }) => {
         {weatherData.weather[0].description}
       </Typography>
       <Typography>
-        Temperature: {weatherData.main.temp} °K {weatherData.main.temp}
+        Temperature: {weatherData.main.temp} °K /{"    "}
+        {(((weatherData.main.temp - 273.15) * 9) / 5 + 32).toFixed(2)} °F /
+        {"    "} {(weatherData.main.temp - 273.15).toFixed(2)} °C
       </Typography>
-      <Typography>Feels Like: {weatherData.main.feels_like} °K </Typography>
+      <Typography>
+        Feels Like: {weatherData.main.feels_like} °K /{"    "}
+        {(((weatherData.main.feels_like - 273.15) * 9) / 5 + 32).toFixed(2)} °F
+        / {"    "}
+        {(weatherData.main.feels_like - 273.15).toFixed(2)} °C
+      </Typography>
       <Typography>Min Temperature: {weatherData.main.temp_min} °K</Typography>
       <Typography>Max Temperature: {weatherData.main.temp_max} °K</Typography>
       <Typography>Pressure: {weatherData.main.pressure} hPa</Typography>
